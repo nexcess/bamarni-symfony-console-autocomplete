@@ -81,18 +81,12 @@ class DumpCommand extends Command
 
         // find all commands
         $command = $script . ' list ' . $scriptOptions . ' --format=xml';
-        $script_options_exploded = explode(' ', $scriptOptions);
-        $command_exploded[0] = $script . ' list';
-        foreach($script_options_exploded as $option) {
-            $command_exploded[] = $option;
-        }
-        $command_exploded[] = '--format=xml';
         if (method_exists(Process::class, 'fromShellCommandline')) {
             // Symfony 4+
-            $process = Process::fromShellCommandline($command_exploded);
+            $process = Process::fromShellCommandline($command);
         } else {
             // old Symfony way
-            $process = new Process($command);
+            $process = new Process(explode(' ', $command));
         }
         $process->run();
         if (!$process->isSuccessful()) {
