@@ -11,9 +11,6 @@
     "require-dev": {
         "symfony/console": "2.8.*"
     },
-    "replace": {
-        "bamarni/symfony-console-autocomplete": "*"
-    },
     "authors": [
         {
             "name": "Bilal Amarni",
